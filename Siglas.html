@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modelos de Red - OSI y TCP/IP</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 20px; background:#f9fafb; }
+  h1 { text-align: center; }
+  .accordion { border:1px solid #d1d5db; border-radius:8px; margin-bottom:20px; }
+  .accordion-header { background:#e5e7eb; cursor:pointer; padding:12px; font-weight:bold; border-radius:8px; }
+  .accordion-header:hover { background:#d1d5db; }
+  .accordion-content { display:none; padding:12px; background:#fff; border-top:1px solid #d1d5db; }
+  .sigla { margin:6px 0; cursor:pointer; padding:8px; border-radius:6px; background:#f3f4f6; }
+  .sigla:hover { background:#e5e7eb; }
+  .sigla-content { display:none; margin:8px 0 16px 12px; padding:10px; border-left:3px solid #2563eb; background:#f9fafb; border-radius:6px; }
+  .card { margin:6px 0; padding:8px; border:1px solid #e5e7eb; border-radius:6px; background:#fff; }
+  .quiz-toggle { margin-top:20px; padding:10px; background:#e0f2fe; border-radius:6px; cursor:pointer; font-weight:bold; }
+  .quiz-toggle:hover { background:#bae6fd; }
+  .quiz { display:none; margin-top:10px; padding:12px; background:#f3f4f6; border-radius:8px; }
+  .q { margin-bottom:12px; }
+  label { display:block; padding:6px; cursor:pointer; border-radius:6px; }
+  label:hover { background:#e5e7eb; }
+  .correct { background:#dcfce7 !important; }
+  .incorrect { background:#fee2e2 !important; }
+  .toolbar { display:flex; gap:10px; margin-top:12px; }
+  button { padding:8px 14px; border:none; border-radius:6px; cursor:pointer; }
+  .primary { background:#2563eb; color:white; }
+  .secondary { background:#e5e7eb; }
+</style>
+</head>
+<body>
+
+<h1>📘 Modelos de Red</h1>
+
+<div class="accordion">
+  <div class="accordion-header">Modelos de Red</div>
+  <div class="accordion-content">
+
+    <!-- Sigla OSI -->
+    <div class="sigla">🔹 OSI</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Open Systems Interconnection</div>
+      <div class="card"><b>Significado en español:</b> Interconexión de Sistemas Abiertos</div>
+      <div class="card"><b>Para qué sirve:</b> Es un modelo de 7 capas que estandariza cómo se comunican los dispositivos en una red.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Imagina que enviar una carta requiere 7 pasos: escribirla, ponerla en un sobre, poner la dirección, llevarla a correos, que el cartero la lleve, que llegue al buzón y que el destinatario la lea. Cada paso es una capa del modelo OSI.</div>
+    </div>
+
+    <!-- Sigla TCP/IP -->
+    <div class="sigla">🔹 TCP/IP</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Transmission Control Protocol / Internet Protocol</div>
+      <div class="card"><b>Significado en español:</b> Protocolo de Control de Transmisión / Protocolo de Internet</div>
+      <div class="card"><b>Para qué sirve:</b> Es el conjunto de protocolos que permite que Internet funcione. Define cómo se transmiten y reciben datos.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Imagina que TCP es el repartidor que se asegura de que todos los paquetes lleguen en orden, e IP es el mapa con las direcciones para que el repartidor sepa dónde entregar cada paquete.</div>
+    </div>
+
+    <!-- Mini Test Toggle -->
+    <div class="quiz-toggle">📝 Mostrar Mini Test</div>
+    <div class="quiz">
+      <h3>Mini Test de Enlazamiento</h3>
+
+      <div class="q">
+        <p><b>1.</b> ¿Qué significa OSI?</p>
+        <label><input type="radio" name="q1" value="correct">
+        Open Systems Interconnection / Interconexión de Sistemas Abiertos</label>
+        <label><input type="radio" name="q1" value="wrong">
+        Operational Secure Internet / Internet Seguro Operacional</label>
+      </div>
+
+      <div class="q">
+        <p><b>2.</b> ¿Qué significa TCP/IP?</p>
+        <label><input type="radio" name="q2" value="correct">
+        Transmission Control Protocol / Internet Protocol / Protocolo de Control de Transmisión y Protocolo de Internet</label>
+        <label><input type="radio" name="q2" value="wrong">
+        Transport Central Platform / Internal Process / Plataforma Central de Transporte y Proceso Interno</label>
+      </div>
+
+      <div class="toolbar">
+        <button class="primary" onclick="checkQuiz()">Corregir</button>
+        <button class="secondary" onclick="resetAllQuizzes()">Repetir</button>
+        <button class="secondary" onclick="exitQuiz()">Salir</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Bloque 2: Tipos de Red -->
+<div class="accordion">
+  <div class="accordion-header">Tipos de Red</div>
+  <div class="accordion-content">
+
+    <!-- LAN -->
+    <div class="sigla">🔹 LAN</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Local Area Network</div>
+      <div class="card"><b>Significado en español:</b> Red de Área Local</div>
+      <div class="card"><b>Para qué sirve:</b> Conecta dispositivos en un área pequeña (casa, oficina, escuela) a gran velocidad.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como la red de amigos que juegan en el mismo patio: todos están cerca y se pueden hablar rápido.</div>
+    </div>
+
+    <!-- PAN -->
+    <div class="sigla">🔹 PAN</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Personal Area Network</div>
+      <div class="card"><b>Significado en español:</b> Red de Área Personal</div>
+      <div class="card"><b>Para qué sirve:</b> Conecta tus dispositivos personales (móvil, reloj inteligente, auriculares) en distancias muy cortas.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como tu mochila: solo lleva cosas tuyas y todo está cerca de ti.</div>
+    </div>
+
+    <!-- MAN -->
+    <div class="sigla">🔹 MAN</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Metropolitan Area Network</div>
+      <div class="card"><b>Significado en español:</b> Red de Área Metropolitana</div>
+      <div class="card"><b>Para qué sirve:</b> Conecta varias LAN dentro de una ciudad o zona metropolitana.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como el transporte público de tu ciudad que conecta muchos barrios diferentes.</div>
+    </div>
+
+    <!-- WAN -->
+    <div class="sigla">🔹 WAN</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Wide Area Network</div>
+      <div class="card"><b>Significado en español:</b> Red de Área Amplia</div>
+      <div class="card"><b>Para qué sirve:</b> Conecta redes en diferentes países o continentes. Internet es la WAN más grande.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como las aerolíneas que llevan personas y paquetes de un país a otro.</div>
+    </div>
+
+    <!-- Mini Test -->
+    <div class="quiz-toggle">📝 Mostrar Mini Test</div>
+    <div class="quiz">
+      <h3>Mini Test de Enlazamiento</h3>
+
+      <div class="q">
+        <p><b>1.</b> ¿Qué significa LAN?</p>
+        <label><input type="radio" name="q21" value="correct">
+        Local Area Network / Red de Área Local</label>
+        <label><input type="radio" name="q21" value="wrong">
+        Large Access Node / Nodo de Acceso Grande</label>
+      </div>
+
+      <div class="q">
+        <p><b>2.</b> ¿Qué significa PAN?</p>
+        <label><input type="radio" name="q22" value="correct">
+        Personal Area Network / Red de Área Personal</label>
+        <label><input type="radio" name="q22" value="wrong">
+        Public Access Node / Nodo de Acceso Público</label>
+      </div>
+
+      <div class="q">
+        <p><b>3.</b> ¿Qué significa MAN?</p>
+        <label><input type="radio" name="q23" value="correct">
+        Metropolitan Area Network / Red de Área Metropolitana</label>
+        <label><input type="radio" name="q23" value="wrong">
+        Main Access Network / Red Principal de Acceso</label>
+      </div>
+
+      <div class="q">
+        <p><b>4.</b> ¿Qué significa WAN?</p>
+        <label><input type="radio" name="q24" value="correct">
+        Wide Area Network / Red de Área Amplia</label>
+        <label><input type="radio" name="q24" value="wrong">
+        Wireless Access Net / Red de Acceso Inalámbrico</label>
+      </div>
+
+      <div class="toolbar">
+        <button class="primary" onclick="checkQuiz()">Corregir</button>
+        <button class="secondary" onclick="resetAllQuizzes()">Repetir</button>
+        <button class="secondary" onclick="exitQuiz()">Salir</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Bloque 3: Protocolos de Comunicación (Parte 1) -->
+<div class="accordion">
+  <div class="accordion-header">Protocolos de Comunicación (Parte 1)</div>
+  <div class="accordion-content">
+
+    <!-- HTTP -->
+    <div class="sigla">🔹 HTTP</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> HyperText Transfer Protocol</div>
+      <div class="card"><b>Significado en español:</b> Protocolo de Transferencia de Hipertexto</div>
+      <div class="card"><b>Para qué sirve:</b> Permite la transmisión de páginas web en Internet.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como el idioma que usa tu navegador para hablar con una página web.</div>
+    </div>
+
+    <!-- HTTPS -->
+    <div class="sigla">🔹 HTTPS</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> HyperText Transfer Protocol Secure</div>
+      <div class="card"><b>Significado en español:</b> Protocolo Seguro de Transferencia de Hipertexto</div>
+      <div class="card"><b>Para qué sirve:</b> Es la versión segura de HTTP; cifra la comunicación.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como enviar una carta cerrada en un sobre para que nadie pueda leerla en el camino.</div>
+    </div>
+
+    <!-- FTP -->
+    <div class="sigla">🔹 FTP</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> File Transfer Protocol</div>
+      <div class="card"><b>Significado en español:</b> Protocolo de Transferencia de Archivos</div>
+      <div class="card"><b>Para qué sirve:</b> Transfiere archivos entre computadoras en una red.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como pasarle a un amigo una carpeta de dibujos usando un cable.</div>
+    </div>
+
+    <!-- FTPS -->
+    <div class="sigla">🔹 FTPS</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> File Transfer Protocol Secure</div>
+      <div class="card"><b>Significado en español:</b> Protocolo Seguro de Transferencia de Archivos</div>
+      <div class="card"><b>Para qué sirve:</b> Añade seguridad al FTP mediante cifrado.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como enviar tu carpeta de dibujos, pero dentro de una caja con candado.</div>
+    </div>
+
+    <!-- SFTP -->
+    <div class="sigla">🔹 SFTP</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> SSH File Transfer Protocol</div>
+      <div class="card"><b>Significado en español:</b> Protocolo de Transferencia de Archivos por SSH</div>
+      <div class="card"><b>Para qué sirve:</b> Transfiere archivos de manera segura usando cifrado SSH.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como pasar un archivo a tu amigo, pero usando un túnel secreto donde nadie puede espiar.</div>
+    </div>
+
+    <!-- SMTP -->
+    <div class="sigla">🔹 SMTP</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Simple Mail Transfer Protocol</div>
+      <div class="card"><b>Significado en español:</b> Protocolo Simple de Transferencia de Correo</div>
+      <div class="card"><b>Para qué sirve:</b> Se utiliza para enviar correos electrónicos.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como el cartero que recoge tus cartas y las entrega al buzón de destino.</div>
+    </div>
+
+    <!-- IMAP -->
+    <div class="sigla">🔹 IMAP</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Internet Message Access Protocol</div>
+      <div class="card"><b>Significado en español:</b> Protocolo de Acceso a Mensajes de Internet</div>
+      <div class="card"><b>Para qué sirve:</b> Permite leer correos directamente desde el servidor sin descargarlos.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como leer un libro en la biblioteca sin llevártelo a casa.</div>
+    </div>
+
+    <!-- POP3 -->
+    <div class="sigla">🔹 POP3</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Post Office Protocol version 3</div>
+      <div class="card"><b>Significado en español:</b> Protocolo de Oficina de Correo versión 3</div>
+      <div class="card"><b>Para qué sirve:</b> Permite descargar correos electrónicos a tu computadora.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como llevarte el libro de la biblioteca a tu casa para leerlo allí.</div>
+    </div>
+
+    <!-- Mini Test Parte 1 -->
+    <div class="quiz-toggle">📝 Mostrar Mini Test</div>
+    <div class="quiz">
+      <h3>Mini Test de Enlazamiento (Parte 1)</h3>
+
+      <div class="q">
+        <p><b>1.</b> ¿Qué significa HTTP?</p>
+        <label><input type="radio" name="q31" value="correct">
+        HyperText Transfer Protocol / Protocolo de Transferencia de Hipertexto</label>
+        <label><input type="radio" name="q31" value="wrong">
+        High Text Transport Program / Programa de Transporte de Texto Alto</label>
+      </div>
+
+      <div class="q">
+        <p><b>2.</b> ¿Qué significa HTTPS?</p>
+        <label><input type="radio" name="q32" value="correct">
+        HyperText Transfer Protocol Secure / Protocolo Seguro de Transferencia de Hipertexto</label>
+        <label><input type="radio" name="q32" value="wrong">
+        Hyper Transfer Text Protect / Protector de Texto Hipertransferido</label>
+      </div>
+
+      <div class="q">
+        <p><b>3.</b> ¿Qué significa FTP?</p>
+        <label><input type="radio" name="q33" value="correct">
+        File Transfer Protocol / Protocolo de Transferencia de Archivos</label>
+        <label><input type="radio" name="q33" value="wrong">
+        Fast Transmission Program / Programa de Transmisión Rápida</label>
+      </div>
+
+      <div class="q">
+        <p><b>4.</b> ¿Qué significa SMTP?</p>
+        <label><input type="radio" name="q34" value="correct">
+        Simple Mail Transfer Protocol / Protocolo Simple de Transferencia de Correo</label>
+        <label><input type="radio" name="q34" value="wrong">
+        Secure Mail Transport Process / Proceso Seguro de Transporte de Correo</label>
+      </div>
+
+      <div class="q">
+        <p><b>5.</b> ¿Qué significa POP3?</p>
+        <label><input type="radio" name="q35" value="correct">
+        Post Office Protocol v3 / Protocolo de Oficina de Correo v3</label>
+        <label><input type="radio" name="q35" value="wrong">
+        Public Online Protocol v3 / Protocolo Público en Línea v3</label>
+      </div>
+
+      <div class="toolbar">
+        <button class="primary" onclick="checkQuiz()">Corregir</button>
+        <button class="secondary" onclick="resetAllQuizzes()">Repetir</button>
+        <button class="secondary" onclick="exitQuiz()">Salir</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Bloque 3: Protocolos de Comunicación (Parte 2) -->
+<div class="accordion">
+  <div class="accordion-header">Protocolos de Comunicación (Parte 2)</div>
+  <div class="accordion-content">
+
+    <!-- DHCP -->
+    <div class="sigla">🔹 DHCP</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Dynamic Host Configuration Protocol</div>
+      <div class="card"><b>Significado en español:</b> Protocolo de Configuración Dinámica de Host</div>
+      <div class="card"><b>Para qué sirve:</b> Asigna direcciones IP automáticamente a los dispositivos de una red.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como un profesor que reparte a cada niño un número de lista para que no haya confusión.</div>
+    </div>
+
+    <!-- ARP -->
+    <div class="sigla">🔹 ARP</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Address Resolution Protocol</div>
+      <div class="card"><b>Significado en español:</b> Protocolo de Resolución de Direcciones</div>
+      <div class="card"><b>Para qué sirve:</b> Traduce direcciones IP en direcciones MAC dentro de una red local.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como preguntar: “¿Quién tiene este número de teléfono?” y alguien levanta la mano con su nombre.</div>
+    </div>
+
+    <!-- NAT -->
+    <div class="sigla">🔹 NAT</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Network Address Translation</div>
+      <div class="card"><b>Significado en español:</b> Traducción de Direcciones de Red</div>
+      <div class="card"><b>Para qué sirve:</b> Permite que varios dispositivos de una red privada usen una sola dirección IP pública para salir a Internet.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como si toda tu familia compartiera una misma dirección postal aunque cada uno tenga su propio cuarto.</div>
+    </div>
+
+    <!-- IP -->
+    <div class="sigla">🔹 IP</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Internet Protocol</div>
+      <div class="card"><b>Significado en español:</b> Protocolo de Internet</div>
+      <div class="card"><b>Para qué sirve:</b> Identifica y dirige los datos para que viajen entre dispositivos en una red.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como poner una dirección en un sobre para que el cartero sepa dónde llevarlo.</div>
+    </div>
+
+    <!-- TCP -->
+    <div class="sigla">🔹 TCP</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Transmission Control Protocol</div>
+      <div class="card"><b>Significado en español:</b> Protocolo de Control de Transmisión</div>
+      <div class="card"><b>Para qué sirve:</b> Garantiza que los datos lleguen completos, en orden y sin errores.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como un repartidor que comprueba que te llegan todas las piezas de tu Lego sin que falte ninguna.</div>
+    </div>
+
+    <!-- UDP -->
+    <div class="sigla">🔹 UDP</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> User Datagram Protocol</div>
+      <div class="card"><b>Significado en español:</b> Protocolo de Datagramas de Usuario</div>
+      <div class="card"><b>Para qué sirve:</b> Envía datos más rápido que TCP, pero sin garantizar que lleguen completos.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como lanzar pelotas a un amigo muy rápido: algunas pueden caerse, pero lo importante es la velocidad.</div>
+    </div>
+
+    <!-- ICMP -->
+    <div class="sigla">🔹 ICMP</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Internet Control Message Protocol</div>
+      <div class="card"><b>Significado en español:</b> Protocolo de Mensajes de Control de Internet</div>
+      <div class="card"><b>Para qué sirve:</b> Se usa para enviar mensajes de diagnóstico en la red (ejemplo: ping).</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como decir “¿estás ahí?” y esperar que alguien conteste “sí, aquí estoy”.</div>
+    </div>
+
+    <!-- Mini Test Parte 2 -->
+    <div class="quiz-toggle">📝 Mostrar Mini Test</div>
+    <div class="quiz">
+      <h3>Mini Test de Enlazamiento (Parte 2)</h3>
+
+      <div class="q">
+        <p><b>1.</b> ¿Qué significa DHCP?</p>
+        <label><input type="radio" name="q36" value="correct">
+        Dynamic Host Configuration Protocol / Protocolo de Configuración Dinámica de Host</label>
+        <label><input type="radio" name="q36" value="wrong">
+        Direct Host Control Process / Proceso de Control Directo de Host</label>
+      </div>
+
+      <div class="q">
+        <p><b>2.</b> ¿Qué significa ARP?</p>
+        <label><input type="radio" name="q37" value="correct">
+        Address Resolution Protocol / Protocolo de Resolución de Direcciones</label>
+        <label><input type="radio" name="q37" value="wrong">
+        Advanced Routing Process / Proceso Avanzado de Enrutamiento</label>
+      </div>
+
+      <div class="q">
+        <p><b>3.</b> ¿Qué significa NAT?</p>
+        <label><input type="radio" name="q38" value="correct">
+        Network Address Translation / Traducción de Direcciones de Red</label>
+        <label><input type="radio" name="q38" value="wrong">
+        National Access Tool / Herramienta de Acceso Nacional</label>
+      </div>
+
+      <div class="q">
+        <p><b>4.</b> ¿Qué significa TCP?</p>
+        <label><input type="radio" name="q39" value="correct">
+        Transmission Control Protocol / Protocolo de Control de Transmisión</label>
+        <label><input type="radio" name="q39" value="wrong">
+        Transfer Channel Program / Programa de Canal de Transferencia</label>
+      </div>
+
+      <div class="q">
+        <p><b>5.</b> ¿Qué significa UDP?</p>
+        <label><input type="radio" name="q40" value="correct">
+        User Datagram Protocol / Protocolo de Datagramas de Usuario</label>
+        <label><input type="radio" name="q40" value="wrong">
+        Universal Data Process / Proceso Universal de Datos</label>
+      </div>
+
+      <div class="q">
+        <p><b>6.</b> ¿Qué significa ICMP?</p>
+        <label><input type="radio" name="q41" value="correct">
+        Internet Control Message Protocol / Protocolo de Mensajes de Control de Internet</label>
+        <label><input type="radio" name="q41" value="wrong">
+        Internal Communication Management Program / Programa de Gestión de Comunicación Interna</label>
+      </div>
+
+      <div class="toolbar">
+        <button class="primary" onclick="checkQuiz()">Corregir</button>
+        <button class="secondary" onclick="resetAllQuizzes()">Repetir</button>
+        <button class="secondary" onclick="exitQuiz()">Salir</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Bloque 4: Protocolos y Tecnologías de Seguridad -->
+<div class="accordion">
+  <div class="accordion-header">Protocolos y Tecnologías de Seguridad</div>
+  <div class="accordion-content">
+
+    <!-- IPSec -->
+    <div class="sigla">🔹 IPSec</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Internet Protocol Security</div>
+      <div class="card"><b>Significado en español:</b> Seguridad del Protocolo de Internet</div>
+      <div class="card"><b>Para qué sirve:</b> Proporciona cifrado y autenticación para proteger las comunicaciones IP.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como enviar cartas en un sobre cerrado con sello especial para que nadie pueda leerlas ni cambiarlas.</div>
+    </div>
+
+    <!-- QoS -->
+    <div class="sigla">🔹 QoS</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Quality of Service</div>
+      <div class="card"><b>Significado en español:</b> Calidad de Servicio</div>
+      <div class="card"><b>Para qué sirve:</b> Prioriza ciertos tipos de tráfico en la red (ejemplo: llamadas de voz sobre descargas).</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como cuando en una fila de la cafetería dejan pasar primero a los que solo van a comprar agua porque es rápido.</div>
+    </div>
+
+    <!-- VPN -->
+    <div class="sigla">🔹 VPN</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Virtual Private Network</div>
+      <div class="card"><b>Significado en español:</b> Red Privada Virtual</div>
+      <div class="card"><b>Para qué sirve:</b> Permite crear un túnel seguro para conectarse a una red privada desde cualquier lugar.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como tener un túnel secreto que conecta tu casa con el colegio para que nadie te vea en el camino.</div>
+    </div>
+
+    <!-- MPLS -->
+    <div class="sigla">🔹 MPLS</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Multiprotocol Label Switching</div>
+      <div class="card"><b>Significado en español:</b> Conmutación de Etiquetas Multiprotocolo</div>
+      <div class="card"><b>Para qué sirve:</b> Acelera el envío de datos en grandes redes al usar etiquetas en lugar de direcciones largas.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como poner pegatinas de colores en las mochilas para que los repartidores sepan rápidamente a qué grupo pertenece cada una.</div>
+    </div>
+
+    <!-- Mini Test -->
+    <div class="quiz-toggle">📝 Mostrar Mini Test</div>
+    <div class="quiz">
+      <h3>Mini Test de Enlazamiento</h3>
+
+      <div class="q">
+        <p><b>1.</b> ¿Qué significa IPSec?</p>
+        <label><input type="radio" name="q42" value="correct">
+        Internet Protocol Security / Seguridad del Protocolo de Internet</label>
+        <label><input type="radio" name="q42" value="wrong">
+        Internal Protection Service / Servicio de Protección Interna</label>
+      </div>
+
+      <div class="q">
+        <p><b>2.</b> ¿Qué significa QoS?</p>
+        <label><input type="radio" name="q43" value="correct">
+        Quality of Service / Calidad de Servicio</label>
+        <label><input type="radio" name="q43" value="wrong">
+        Quick Online Security / Seguridad Rápida en Línea</label>
+      </div>
+
+      <div class="q">
+        <p><b>3.</b> ¿Qué significa VPN?</p>
+        <label><input type="radio" name="q44" value="correct">
+        Virtual Private Network / Red Privada Virtual</label>
+        <label><input type="radio" name="q44" value="wrong">
+        Verified Public Node / Nodo Público Verificado</label>
+      </div>
+
+      <div class="q">
+        <p><b>4.</b> ¿Qué significa MPLS?</p>
+        <label><input type="radio" name="q45" value="correct">
+        Multiprotocol Label Switching / Conmutación de Etiquetas Multiprotocolo</label>
+        <label><input type="radio" name="q45" value="wrong">
+        Multi Platform Local System / Sistema Local Multiplataforma</label>
+      </div>
+
+      <div class="toolbar">
+        <button class="primary" onclick="checkQuiz()">Corregir</button>
+        <button class="secondary" onclick="resetAllQuizzes()">Repetir</button>
+        <button class="secondary" onclick="exitQuiz()">Salir</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Bloque 5: Medios de Transmisión -->
+<div class="accordion">
+  <div class="accordion-header">Medios de Transmisión</div>
+  <div class="accordion-content">
+
+    <!-- Wi-Fi -->
+    <div class="sigla">🔹 Wi-Fi</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Wireless Fidelity</div>
+      <div class="card"><b>Significado en español:</b> Fidelidad Inalámbrica</div>
+      <div class="card"><b>Para qué sirve:</b> Permite conectar dispositivos a una red sin necesidad de cables usando ondas de radio.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como hablar con tus amigos usando walkie-talkies, pero para que tu tablet o tu móvil hablen con Internet.</div>
+    </div>
+
+    <!-- Ethernet -->
+    <div class="sigla">🔹 Ethernet</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Ethernet (no es sigla, es un estándar)</div>
+      <div class="card"><b>Significado en español:</b> Ethernet</div>
+      <div class="card"><b>Para qué sirve:</b> Conecta dispositivos mediante cables, proporcionando conexión rápida, estable y segura.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como una cuerda que une dos latas para hablar: los datos viajan por el cable directo sin perderse.</div>
+    </div>
+
+    <!-- Bluetooth -->
+    <div class="sigla">🔹 Bluetooth</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Bluetooth (nombre tomado del rey vikingo Harald “Bluetooth”)</div>
+      <div class="card"><b>Significado en español:</b> Bluetooth</div>
+      <div class="card"><b>Para qué sirve:</b> Conecta dispositivos cercanos sin cables, ideal para auriculares, relojes o ratones inalámbricos.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como un hilo invisible que conecta tus cascos al móvil para escuchar música sin cables.</div>
+    </div>
+
+    <!-- Fibra Óptica -->
+    <div class="sigla">🔹 Fibra Óptica</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Optical Fiber</div>
+      <div class="card"><b>Significado en español:</b> Fibra Óptica</div>
+      <div class="card"><b>Para qué sirve:</b> Transmite datos a gran velocidad mediante pulsos de luz a través de hilos de vidrio muy finos.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como un tubo transparente donde en vez de agua viaja la luz llevando los mensajes rapidísimo.</div>
+    </div>
+
+    <!-- Mini Test -->
+    <div class="quiz-toggle">📝 Mostrar Mini Test</div>
+    <div class="quiz">
+      <h3>Mini Test de Enlazamiento</h3>
+
+      <div class="q">
+        <p><b>1.</b> ¿Qué significa Wi-Fi?</p>
+        <label><input type="radio" name="q46" value="correct">
+        Wireless Fidelity / Fidelidad Inalámbrica</label>
+        <label><input type="radio" name="q46" value="wrong">
+        Wide Finder / Buscador Amplio</label>
+      </div>
+
+      <div class="q">
+        <p><b>2.</b> ¿Qué es Ethernet?</p>
+        <label><input type="radio" name="q47" value="correct">
+        Estándar de conexión por cable / conexión rápida y estable</label>
+        <label><input type="radio" name="q47" value="wrong">
+        Sistema inalámbrico de alta frecuencia</label>
+      </div>
+
+      <div class="q">
+        <p><b>3.</b> ¿Para qué sirve Bluetooth?</p>
+        <label><input type="radio" name="q48" value="correct">
+        Conectar dispositivos cercanos sin cables (auriculares, relojes, etc.)</label>
+        <label><input type="radio" name="q48" value="wrong">
+        Conectar redes de ciudades enteras</label>
+      </div>
+
+      <div class="q">
+        <p><b>4.</b> ¿Qué transmite la Fibra Óptica?</p>
+        <label><input type="radio" name="q49" value="correct">
+        Datos a través de pulsos de luz por hilos de vidrio</label>
+        <label><input type="radio" name="q49" value="wrong">
+        Datos mediante ondas de radio en el aire</label>
+      </div>
+
+      <div class="toolbar">
+        <button class="primary" onclick="checkQuiz()">Corregir</button>
+        <button class="secondary" onclick="resetAllQuizzes()">Repetir</button>
+        <button class="secondary" onclick="exitQuiz()">Salir</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Bloque 6: Dispositivos de Red -->
+<div class="accordion">
+  <div class="accordion-header">Dispositivos de Red</div>
+  <div class="accordion-content">
+
+    <!-- HUB -->
+    <div class="sigla">🔹 HUB</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> HUB (concentrador)</div>
+      <div class="card"><b>Significado en español:</b> Concentrador</div>
+      <div class="card"><b>Para qué sirve:</b> Envía los datos que recibe a todos los dispositivos conectados sin distinguir el destinatario.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como gritar en una habitación: todos escuchan aunque solo quieras hablar con uno.</div>
+    </div>
+
+    <!-- Switch -->
+    <div class="sigla">🔹 Switch</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Switch (conmutador)</div>
+      <div class="card"><b>Significado en español:</b> Conmutador</div>
+      <div class="card"><b>Para qué sirve:</b> Envía los datos únicamente al dispositivo de destino usando direcciones MAC, optimizando la red.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como un policía de tráfico que indica a cada coche a qué calle debe ir, evitando atascos.</div>
+    </div>
+
+    <!-- Router -->
+    <div class="sigla">🔹 Router</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Router</div>
+      <div class="card"><b>Significado en español:</b> Enrutador</div>
+      <div class="card"><b>Para qué sirve:</b> Conecta diferentes redes entre sí (por ejemplo, tu red doméstica con Internet) y busca la mejor ruta para los datos.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como un GPS que indica el mejor camino para que una carta llegue a otra ciudad.</div>
+    </div>
+
+    <!-- Mini Test -->
+    <div class="quiz-toggle">📝 Mostrar Mini Test</div>
+    <div class="quiz">
+      <h3>Mini Test de Enlazamiento</h3>
+
+      <div class="q">
+        <p><b>1.</b> ¿Qué hace un HUB?</p>
+        <label><input type="radio" name="q50" value="correct">
+        Envía los datos a todos los dispositivos conectados</label>
+        <label><input type="radio" name="q50" value="wrong">
+        Envía los datos solo al destino correcto</label>
+      </div>
+
+      <div class="q">
+        <p><b>2.</b> ¿Qué hace un Switch?</p>
+        <label><input type="radio" name="q51" value="correct">
+        Envía los datos solo al dispositivo correcto mediante su dirección MAC</label>
+        <label><input type="radio" name="q51" value="wrong">
+        Conecta redes diferentes como Internet y tu casa</label>
+      </div>
+
+      <div class="q">
+        <p><b>3.</b> ¿Para qué sirve un Router?</p>
+        <label><input type="radio" name="q52" value="correct">
+        Conectar diferentes redes y encontrar la mejor ruta para los datos</label>
+        <label><input type="radio" name="q52" value="wrong">
+        Conectar auriculares inalámbricos al móvil</label>
+      </div>
+
+      <div class="toolbar">
+        <button class="primary" onclick="checkQuiz()">Corregir</button>
+        <button class="secondary" onclick="resetAllQuizzes()">Repetir</button>
+        <button class="secondary" onclick="exitQuiz()">Salir</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Bloque 7: Organizaciones y Estándares -->
+<div class="accordion">
+  <div class="accordion-header">Organizaciones y Estándares</div>
+  <div class="accordion-content">
+
+    <!-- IETF -->
+    <div class="sigla">🔹 IETF</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Internet Engineering Task Force</div>
+      <div class="card"><b>Significado en español:</b> Grupo de Trabajo de Ingeniería de Internet</div>
+      <div class="card"><b>Para qué sirve:</b> Desarrolla y promueve estándares de Internet (como los RFC que definen protocolos).</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como un equipo de inventores que decide las reglas para que todos los juguetes de Internet funcionen bien juntos.</div>
+    </div>
+
+    <!-- ISO -->
+    <div class="sigla">🔹 ISO</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> International Organization for Standardization</div>
+      <div class="card"><b>Significado en español:</b> Organización Internacional de Normalización</div>
+      <div class="card"><b>Para qué sirve:</b> Crea normas internacionales en tecnología, calidad y seguridad.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como un grupo que dice cómo deben fabricarse los bloques de Lego para que encajen en cualquier parte del mundo.</div>
+    </div>
+
+    <!-- IANA -->
+    <div class="sigla">🔹 IANA</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Internet Assigned Numbers Authority</div>
+      <div class="card"><b>Significado en español:</b> Autoridad de Asignación de Números de Internet</div>
+      <div class="card"><b>Para qué sirve:</b> Administra direcciones IP, números de protocolo y nombres de dominio de nivel superior.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como un bibliotecario que reparte los números de los libros para que nadie tenga un número repetido.</div>
+    </div>
+
+    <!-- ARIN -->
+    <div class="sigla">🔹 ARIN</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> American Registry for Internet Numbers</div>
+      <div class="card"><b>Significado en español:</b> Registro Americano de Números de Internet</div>
+      <div class="card"><b>Para qué sirve:</b> Gestiona direcciones IP en América del Norte.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como el encargado que reparte los carnés de biblioteca en EE.UU. y Canadá para que nadie repita número.</div>
+    </div>
+
+    <!-- LACNIC -->
+    <div class="sigla">🔹 LACNIC</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Latin American and Caribbean Internet Address Registry</div>
+      <div class="card"><b>Significado en español:</b> Registro de Direcciones de Internet de América Latina y el Caribe</div>
+      <div class="card"><b>Para qué sirve:</b> Administra direcciones IP en América Latina y el Caribe.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como el encargado que reparte carnés en todos los países de Latinoamérica para que cada uno tenga un número único.</div>
+    </div>
+
+    <!-- RIR -->
+    <div class="sigla">🔹 RIR</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Regional Internet Registry</div>
+      <div class="card"><b>Significado en español:</b> Registro Regional de Internet</div>
+      <div class="card"><b>Para qué sirve:</b> Organismos que administran direcciones IP en diferentes regiones del mundo (ejemplo: ARIN, LACNIC, RIPE, APNIC, AFRINIC).</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como tener varios encargados repartiendo carnés en diferentes partes del mundo para que todo esté ordenado.</div>
+    </div>
+
+    <!-- Mini Test -->
+    <div class="quiz-toggle">📝 Mostrar Mini Test</div>
+    <div class="quiz">
+      <h3>Mini Test de Enlazamiento</h3>
+
+      <div class="q">
+        <p><b>1.</b> ¿Qué significa IETF?</p>
+        <label><input type="radio" name="q53" value="correct">
+        Internet Engineering Task Force / Grupo de Trabajo de Ingeniería de Internet</label>
+        <label><input type="radio" name="q53" value="wrong">
+        International Electronic Technical Forum / Foro Técnico Electrónico Internacional</label>
+      </div>
+
+      <div class="q">
+        <p><b>2.</b> ¿Qué significa ISO?</p>
+        <label><input type="radio" name="q54" value="correct">
+        International Organization for Standardization / Organización Internacional de Normalización</label>
+        <label><input type="radio" name="q54" value="wrong">
+        Internet Security Office / Oficina de Seguridad de Internet</label>
+      </div>
+
+      <div class="q">
+        <p><b>3.</b> ¿Qué significa IANA?</p>
+        <label><input type="radio" name="q55" value="correct">
+        Internet Assigned Numbers Authority / Autoridad de Asignación de Números de Internet</label>
+        <label><input type="radio" name="q55" value="wrong">
+        International Association of Network Administrators / Asociación Internacional de Administradores de Redes</label>
+      </div>
+
+      <div class="q">
+        <p><b>4.</b> ¿Qué significa ARIN?</p>
+        <label><input type="radio" name="q56" value="correct">
+        American Registry for Internet Numbers / Registro Americano de Números de Internet</label>
+        <label><input type="radio" name="q56" value="wrong">
+        Advanced Routing International Network / Red Internacional de Enrutamiento Avanzado</label>
+      </div>
+
+      <div class="q">
+        <p><b>5.</b> ¿Qué significa LACNIC?</p>
+        <label><input type="radio" name="q57" value="correct">
+        Latin American and Caribbean Internet Address Registry / Registro de Direcciones de Internet de América Latina y el Caribe</label>
+        <label><input type="radio" name="q57" value="wrong">
+        Local Access Control Network International Committee / Comité Internacional de Control de Redes Locales</label>
+      </div>
+
+      <div class="q">
+        <p><b>6.</b> ¿Qué significa RIR?</p>
+        <label><input type="radio" name="q58" value="correct">
+        Regional Internet Registry / Registro Regional de Internet</label>
+        <label><input type="radio" name="q58" value="wrong">
+        Remote Internet Router / Enrutador de Internet Remoto</label>
+      </div>
+
+      <div class="toolbar">
+        <button class="primary" onclick="checkQuiz()">Corregir</button>
+        <button class="secondary" onclick="resetAllQuizzes()">Repetir</button>
+        <button class="secondary" onclick="exitQuiz()">Salir</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Bloque 8: Conceptos de Direccionamiento -->
+<div class="accordion">
+  <div class="accordion-header">Conceptos de Direccionamiento</div>
+  <div class="accordion-content">
+
+    <!-- CIDR -->
+    <div class="sigla">🔹 CIDR</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Classless Inter-Domain Routing</div>
+      <div class="card"><b>Significado en español:</b> Enrutamiento Interdominios Sin Clases</div>
+      <div class="card"><b>Para qué sirve:</b> Método para asignar direcciones IP y máscaras de subred de forma más eficiente que el sistema por clases (A, B, C).</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como cortar una pizza en los trozos que necesites, no en los que diga la caja. Así aprovechas mejor las direcciones IP.</div>
+    </div>
+
+    <!-- MAC -->
+    <div class="sigla">🔹 MAC</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Media Access Control</div>
+      <div class="card"><b>Significado en español:</b> Control de Acceso al Medio</div>
+      <div class="card"><b>Para qué sirve:</b> Dirección física única que identifica a cada tarjeta de red en el mundo.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como el número de matrícula de un coche: cada dispositivo tiene el suyo y no se repite.</div>
+    </div>
+
+    <!-- Mini Test -->
+    <div class="quiz-toggle">📝 Mostrar Mini Test</div>
+    <div class="quiz">
+      <h3>Mini Test de Enlazamiento</h3>
+
+      <div class="q">
+        <p><b>1.</b> ¿Qué significa CIDR?</p>
+        <label><input type="radio" name="q59" value="correct">
+        Classless Inter-Domain Routing / Enrutamiento Interdominios Sin Clases</label>
+        <label><input type="radio" name="q59" value="wrong">
+        Central Internet Data Registry / Registro Central de Datos de Internet</label>
+      </div>
+
+      <div class="q">
+        <p><b>2.</b> ¿Qué significa MAC?</p>
+        <label><input type="radio" name="q60" value="correct">
+        Media Access Control / Control de Acceso al Medio</label>
+        <label><input type="radio" name="q60" value="wrong">
+        Main Access Channel / Canal Principal de Acceso</label>
+      </div>
+
+      <div class="toolbar">
+        <button class="primary" onclick="checkQuiz()">Corregir</button>
+        <button class="secondary" onclick="resetAllQuizzes()">Repetir</button>
+        <button class="secondary" onclick="exitQuiz()">Salir</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Bloque 9: Herramientas de Análisis y Monitoreo -->
+<div class="accordion">
+  <div class="accordion-header">Herramientas de Análisis y Monitoreo</div>
+  <div class="accordion-content">
+
+    <!-- Wireshark -->
+    <div class="sigla">🔹 Wireshark</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Wireshark</div>
+      <div class="card"><b>Significado en español:</b> Wireshark (analizador de red)</div>
+      <div class="card"><b>Para qué sirve:</b> Herramienta de análisis de protocolos que permite ver y estudiar el tráfico en una red en tiempo real.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como una lupa que te deja ver todas las conversaciones secretas que tienen los dispositivos en una red.</div>
+    </div>
+
+    <!-- Tcpdump -->
+    <div class="sigla">🔹 Tcpdump</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Tcpdump</div>
+      <div class="card"><b>Significado en español:</b> Tcpdump (capturador de tráfico)</div>
+      <div class="card"><b>Para qué sirve:</b> Programa de línea de comandos para capturar y analizar tráfico en redes TCP/IP.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como una grabadora que apunta cada palabra de las conversaciones en la red.</div>
+    </div>
+
+    <!-- Nagios -->
+    <div class="sigla">🔹 Nagios</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Nagios</div>
+      <div class="card"><b>Significado en español:</b> Nagios</div>
+      <div class="card"><b>Para qué sirve:</b> Plataforma de monitoreo que supervisa servidores, redes y aplicaciones.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como un guardia que revisa constantemente si los ordenadores y programas están funcionando bien.</div>
+    </div>
+
+    <!-- Zabbix -->
+    <div class="sigla">🔹 Zabbix</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> Zabbix</div>
+      <div class="card"><b>Significado en español:</b> Zabbix</div>
+      <div class="card"><b>Para qué sirve:</b> Sistema de monitoreo empresarial para redes, servidores, aplicaciones y servicios en la nube.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como un médico que controla la salud de toda la red y avisa si algo va mal.</div>
+    </div>
+
+    <!-- OpenNMS -->
+    <div class="sigla">🔹 OpenNMS</div>
+    <div class="sigla-content">
+      <div class="card"><b>Significado en inglés:</b> OpenNMS (Open Network Management System)</div>
+      <div class="card"><b>Significado en español:</b> Sistema Abierto de Gestión de Redes</div>
+      <div class="card"><b>Para qué sirve:</b> Plataforma de código abierto para la supervisión y gestión de redes a gran escala.</div>
+      <div class="card"><b>Explicación para un niño de 10 años:</b> Es como un director que organiza y vigila todo un ejército de dispositivos en una red gigante.</div>
+    </div>
+
+    <!-- Mini Test -->
+    <div class="quiz-toggle">📝 Mostrar Mini Test</div>
+    <div class="quiz">
+      <h3>Mini Test de Enlazamiento</h3>
+
+      <div class="q">
+        <p><b>1.</b> ¿Para qué sirve Wireshark?</p>
+        <label><input type="radio" name="q61" value="correct">
+        Para analizar el tráfico de red en tiempo real</label>
+        <label><input type="radio" name="q61" value="wrong">
+        Para conectar dispositivos mediante direcciones IP</label>
+      </div>
+
+      <div class="q">
+        <p><b>2.</b> ¿Qué hace Tcpdump?</p>
+        <label><input type="radio" name="q62" value="correct">
+        Captura y analiza tráfico en redes TCP/IP desde la terminal</label>
+        <label><input type="radio" name="q62" value="wrong">
+        Supervisa el rendimiento de la red en gráficas</label>
+      </div>
+
+      <div class="q">
+        <p><b>3.</b> ¿Qué herramienta es un guardia que supervisa servidores y aplicaciones?</p>
+        <label><input type="radio" name="q63" value="correct">
+        Nagios</label>
+        <label><input type="radio" name="q63" value="wrong">
+        Tcpdump</label>
+      </div>
+
+      <div class="q">
+        <p><b>4.</b> ¿Qué herramienta se parece a un médico de la red?</p>
+        <label><input type="radio" name="q64" value="correct">
+        Zabbix</label>
+        <label><input type="radio" name="q64" value="wrong">
+        OpenNMS</label>
+      </div>
+
+      <div class="q">
+        <p><b>5.</b> ¿Qué significa OpenNMS?</p>
+        <label><input type="radio" name="q65" value="correct">
+        Open Network Management System / Sistema Abierto de Gestión de Redes</label>
+        <label><input type="radio" name="q65" value="wrong">
+        Open Node Monitoring Software / Software de Monitoreo de Nodos Abiertos</label>
+      </div>
+
+      <div class="toolbar">
+        <button class="primary" onclick="checkQuiz()">Corregir</button>
+        <button class="secondary" onclick="resetAllQuizzes()">Repetir</button>
+        <button class="secondary" onclick="exitQuiz()">Salir</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// Accordion
+document.querySelectorAll(".accordion-header").forEach(h=>{
+  h.addEventListener("click",()=>{
+    document.querySelectorAll(".accordion-content").forEach(c=>{
+      c.style.display="none";
+      // cerrar también quizzes al salir
+      c.querySelectorAll(".quiz").forEach(q=>{
+        q.style.display="none";
+        resetQuiz(q);
+      });
+    });
+    let content=h.nextElementSibling;
+    content.style.display="block";
+  });
+});
+
+// Siglas desplegables
+document.querySelectorAll(".sigla").forEach(s=>{
+  s.addEventListener("click",()=>{
+    let content=s.nextElementSibling;
+    let all=document.querySelectorAll(".sigla-content");
+    all.forEach(c=>{ if(c!==content) c.style.display="none"; });
+    content.style.display=(content.style.display==="block")?"none":"block";
+  });
+});
+
+// Mini Test toggle
+document.querySelectorAll(".quiz-toggle").forEach(toggle=>{
+  toggle.addEventListener("click",()=>{
+    const quiz = toggle.nextElementSibling;
+    quiz.style.display = (quiz.style.display==="block")?"none":"block";
+  });
+});
+
+// Corregir
+function checkQuiz(){
+  document.querySelectorAll(".quiz").forEach(quiz=>{
+    quiz.querySelectorAll(".q").forEach(q=>{
+      const selected=q.querySelector("input:checked");
+      if(!selected) return;
+      if(selected.value==="correct"){
+        selected.parentElement.classList.add("correct");
+      }else{
+        selected.parentElement.classList.add("incorrect");
+        q.querySelector("input[value='correct']").parentElement.classList.add("correct");
+      }
+    });
+  });
+}
+
+// Reset solo un quiz
+function resetQuiz(quiz){
+  quiz.querySelectorAll("input[type=radio]").forEach(i=>i.checked=false);
+  quiz.querySelectorAll("label").forEach(l=>l.classList.remove("correct","incorrect"));
+  // barajar respuestas
+
+
+let questions = Array.from(quiz.querySelectorAll(".q"));
+shuffle(questions);
+questions.forEach(q=>quiz.insertBefore(q, quiz.querySelector(".toolbar")));
+
+// barajar respuestas dentro de cada pregunta
+questions.forEach(q=>{
+  let labels = Array.from(q.querySelectorAll("label"));
+  shuffle(labels);
+  labels.forEach(l=>q.appendChild(l));
+});
+
+}
+
+// Reset todos
+function resetAllQuizzes(){
+  document.querySelectorAll(".quiz").forEach(quiz=>resetQuiz(quiz));
+}
+
+// Salir
+function exitQuiz(){
+  document.querySelectorAll(".quiz").forEach(quiz=>{
+    resetQuiz(quiz);
+    quiz.style.display="none";
+  });
+}
+
+// Barajar
+function shuffle(array){
+  for(let i=array.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [array[i],array[j]]=[array[j],array[i]];
+  }
+}
+</script>
+
+</body>
+</html>
